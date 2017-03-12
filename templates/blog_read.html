@@ -1,0 +1,15 @@
+<head>
+	<title>pBLog</title>
+</head>
+
+
+<body>
+	{% for post in posts %}
+		<h1>{{ post.blog_title }} </h1>
+		<p style="font-size:20px;">{{ post.blog_post }} </p>
+		<p style="font-size:16px;"> {{ post.post_author }}</p>
+		<p style="font-size:12px;"> Posted on {{ post.date_posted }}</p> 
+	{% endfor %}
+
+</body>
+
