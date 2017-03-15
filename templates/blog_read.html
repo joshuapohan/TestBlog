@@ -1,15 +1,15 @@
-<head>
-	<title>pBLog</title>
-</head>
+{% extends 'base_template.html' %}
 
 
-<body>
+{% block header %}<title>pBLog</title>{% endblock %}
+
+{% block content %}	
+	<div class="text-primary text-center jumbotron" style="font-size:30;">pBLOG</div>
 	{% for post in posts %}
-		<h1>{{ post.blog_title }} </h1>
-		<p style="font-size:20px;">{{ post.blog_post }} </p>
-		<p style="font-size:16px;"> {{ post.post_author }}</p>
-		<p style="font-size:12px;"> Posted on {{ post.date_posted }}</p> 
+	<div>
+		<h1  class="text-primary text-center">{{ post.blog_title }} </h1>
+		{% autoescape off %}<p style="font-size:20px;" class="text-center">{{ post.blog_post }} </p>{% endautoescape %}
+		<p style="font-size:16pxi;" class="text-center"> {{ post.post_author }}</p>
+		<p style="font-size:12px;" class="text-center"> Posted on {{ post.date_posted }}</p> 	</div>
 	{% endfor %}
-
-</body>
-
+{% endblock %}

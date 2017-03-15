@@ -1,0 +1,34 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+{% load staticfiles %}
+<link href="{% static 'bootstrap/css/bootstrap.css' %}" rel="stylesheet"  media="screen">
+
+<html lang="en">
+<head>
+	{% block header %}{% endblock %}
+</head>
+
+<style>
+	.jumbotron{
+		color:rgb(0,0,255);
+	}
+	.navbar-nav li a {
+ 		line-height: 50px;
+	}
+</style>
+
+<body>
+	<nav class="navbar navbar-inverse">
+		<div class="navbar-header">
+			<a href="#">
+				<p style="font-size:40px;padding-top:8px;padding-left:5px" class="text-primary">p's micro Blog</p>
+			</a>
+		</div>
+		<ul class="nav navbar-nav">
+			<li><a href="{% url 'writepost' %}">Write Posts</a></li>
+			<li><a href="{% url 'readpost' %}">Read Posts</a></li>
+		</ul>
+	</nav>
+	{% block content %}
+	{% endblock %}
+</body>
+</html>

@@ -17,6 +17,6 @@ from django.contrib import admin
 from pBlog.views import writepost, readpost
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^write/$', writepost),
-    url(r'^post/$', readpost),
+    url(r'^write/$', writepost, name='writepost'),
+    url(r'^post/$', readpost, name='readpost'),
 ]
