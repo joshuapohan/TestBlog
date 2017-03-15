@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from pBlog.forms import PostForm
 from blogPost.models import WritePost
 from django.utils import timezone
+from django.core.paginator import Paginator
 
 def writepost(request):
     if request.method == 'POST':
@@ -19,5 +20,14 @@ def writepost(request):
 
 def readpost(request):
     if request.method == 'GET':
-        posts = WritePost.objects.filter(date_posted__lte=timezone.now()).order_by('date_posted')
+        post_list = WritePost.objects.filter(date_posted__lte=timezone.now()).order_by('date_posted')
+        page = request.GET.get('page',1)
+        post_paged = Paginator(post_list,3)
+        try:
+            posts = post_paged.page(page)
+        except PageNotAnInteger:
+            posts = paginator.page(1)
+        except EmptyPage:
+            posts = post_paged.page(post_paged.num_pages)
+
     return render(request,'blog_read.html',{'posts':posts})
