@@ -14,12 +14,19 @@
 	.navbar-nav li a {
  		line-height: 50px;
 	}
+
+	.iconright{
+		width:auto;
+		height:40px;
+		padding-right:20px;
+		margin-bottom:0px;
+	}
 </style>
 
 <body>
 	<nav class="navbar navbar-inverse">
 		<div class="navbar-header">
-			<a href="#">
+			<a href="">
 				<p style="font-size:40px;padding-top:8px;padding-left:5px" class="text-primary">p's micro Blog</p>
 			</a>
 		</div>
@@ -27,6 +34,9 @@
 			<li><a href="{% url 'writepost' %}">Write Posts</a></li>
 			<li><a href="{% url 'readpost' %}">Read Posts</a></li>
 		</ul>
+		<div class="nav navbar-right">
+			<img class="iconright" src="{% static "img\test.png" %}">
+		</div>
 	</nav>
 	{% block content %}
 	{% endblock %}
