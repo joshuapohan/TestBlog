@@ -1,4 +1,4 @@
-from django.shortcuts import render #render html page
+from django.shortcuts import render, render_to_response, get_object_or_404 #render html page
 from django.http import HttpResponse, HttpResponseRedirect
 from pBlog.forms import PostForm
 from blogPost.models import WritePost
@@ -38,3 +38,9 @@ def readpost(request):
 def logout_page(request):
     logout(request)
     return HttpResponseRedirect('/')
+
+def post_detail(request,slug):
+    post = get_object_or_404(WritePost, slug=slug)
+    post.slug = "home\\" + post.slug
+    return render(request,'blog_detail.html',{'post':post})
+
