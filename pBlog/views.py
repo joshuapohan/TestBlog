@@ -1,19 +1,20 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from django.shortcuts import render #render html page
+from django.http import HttpResponse, HttpResponseRedirect
 from pBlog.forms import PostForm
 from blogPost.models import WritePost
 from django.utils import timezone
 from django.core.paginator import Paginator
-from django.contrib.auth.models import User 
+from django.contrib.auth.models import User
+from django.contrib.auth import logout #for the logout function used in user authentication
 
 def writepost(request):
     if request.method == 'POST':
         request.POST = request.POST.copy()
         form = PostForm(request.POST)
         if form.is_valid():
-            user = 'test'
+            
             #form.data['title'] = 'My huge magnum dong'
-            WritePost.objects.create(date_posted=timezone.now(), blog_title=form.data['title'], blog_post=form.data['message'], post_author=user)
+            WritePost.objects.create(date_posted=timezone.now(), blog_title=form.data['title'], blog_post=form.data['message'], post_author=request.user.username)
             return render(request,'blog_post.html',{'form':form})
     else:
         form = PostForm(initial={'title':'enter title...','message':'lorem ipsum....'})
@@ -33,3 +34,7 @@ def readpost(request):
             posts = post_paged.page(post_paged.num_pages)
 
     return render(request,'blog_read.html',{'posts':posts})
+
+def logout_page(request):
+    logout(request)
+    return HttpResponseRedirect('/')

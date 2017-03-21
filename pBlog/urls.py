@@ -14,9 +14,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from pBlog.views import writepost, readpost
+from pBlog.views import writepost, readpost, logout_page
 urlpatterns = [
+    url(r'^$',readpost,name='home'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^write/$', writepost, name='writepost'),
     url(r'^post/$', readpost, name='readpost'),
+    url(r'^login/$','django.contrib.auth.views.login',{'template_name': 'login_page.html'},name='login'),
+    url(r'^logout/$',logout_page, name='logout'),
 ]
