@@ -41,6 +41,6 @@ def logout_page(request):
 
 def post_detail(request,slug):
     post = get_object_or_404(WritePost, slug=slug)
-    post.slug = "home\\" + post.slug
+    post.slug = "writepost\\" + post.slug
     return render(request,'blog_detail.html',{'post':post})
 
