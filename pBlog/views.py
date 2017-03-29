@@ -24,7 +24,7 @@ def writepost(request):
 def readpost(request):
     if request.method == 'GET':
         post_list = WritePost.objects.filter(date_posted__lte=timezone.now()).order_by('-date_posted')
-        page = request.GET.get('page',1)
+        page = request.GET.get('page',1) #get ?page= from request.GET
         post_paged = Paginator(post_list,3)
         try:
             posts = post_paged.page(page)
